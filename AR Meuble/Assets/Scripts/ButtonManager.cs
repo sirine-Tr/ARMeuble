@@ -8,8 +8,28 @@ using DG.Tweening;
 public class ButtonManager : MonoBehaviour
 {
     private Button btn;
+    private RawImage buttonImage;
     public GameObject furniture;
     
+    private int _itemId;
+    public int ItemId
+    {
+        set
+         { 
+             _itemId = value;
+         }
+
+    }
+
+    private Sprite _buttonTexture;
+    public Sprite ButtonTexture
+    {
+        set 
+        {
+            _buttonTexture = value;
+            buttonImage.texture = _buttonTexture.texture;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +56,6 @@ public class ButtonManager : MonoBehaviour
     }
     void SelectObject()
     {
-        DataHandler.Instance.furniture = furniture;
+        DataHandler.Instance.SetFurniture(_itemId);
     }
 }
