@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using UnityEditorInternal;
 public class ButtonManager : MonoBehaviour
 {
     private Button btn;

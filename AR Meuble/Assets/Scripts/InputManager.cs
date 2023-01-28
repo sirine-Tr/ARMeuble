@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.EventSystems;
+//using UnityEditorInternal;
 public class InputManager : MonoBehaviour
 {
     //referance to the object (sofa)
