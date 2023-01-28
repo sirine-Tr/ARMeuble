@@ -8,7 +8,8 @@ using DG.Tweening;
 public class ButtonManager : MonoBehaviour
 {
     private Button btn;
-    private RawImage buttonImage;
+    [SerializeField] private RawImage buttonImage;
+    //private RawImage buttonImage;
     public GameObject furniture;
     
     private int _itemId;

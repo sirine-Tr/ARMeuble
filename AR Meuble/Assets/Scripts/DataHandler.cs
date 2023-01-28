@@ -26,8 +26,21 @@ public class DataHandler : MonoBehaviour
             return instance;
         }
     }
+private void Start()
+{
+    LoadItems();
+    CreateButtons();
+}
+    void LoadItems()
+    {
+        var items_obj = Resources.LoadAll("Items", typeof(Item));
+        foreach (var item in items_obj)
+        {
+            items.Add((Item)item);
+        }
+    }
     //responsable to render the button dynamique
-    void CreateButton()
+    void CreateButtons()
     {
         foreach (Item i in items)
         {
