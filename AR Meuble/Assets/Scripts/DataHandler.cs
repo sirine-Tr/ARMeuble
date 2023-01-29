@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 public class DataHandler : MonoBehaviour
 {
     public GameObject furniture;
@@ -11,6 +13,8 @@ public class DataHandler : MonoBehaviour
     [SerializeField] private GameObject buttonContainter;
     //save all the items
     [SerializeField] private List <Item> _items;
+    //label represent fourniture
+    [SerializeField] private String label;
     //[SerializeField] private ButtonManager buttonPrefab;
     private int current_id = 0;
     private static DataHandler instance;
@@ -26,19 +30,22 @@ public class DataHandler : MonoBehaviour
             return instance;
         }
     }
-    private void Start()
+    //calleed when the game start
+    private async void Start()
       {
-         LoadItems();
+        _items = new List<Item>();
+         //LoadItems();
+         await Get(label);
          CreateButtons();
       }
-    void LoadItems()
+   /* void LoadItems()
     {
         var items_obj =Resources.LoadAll("Items",typeof(Item));
        foreach (var item in items_obj)
        {
            _items.Add(item as Item);
        }
-    }
+    }*/
     //responsable to render the button dynamique
     void CreateButtons()
     {
@@ -59,4 +66,16 @@ public class DataHandler : MonoBehaviour
 
 
         }
+    
+    //getting assets from cloud
+public async Task Get(String label)
+    {
+        var locations = await Addressables.LoadResourceLocationsAsync(label).Task;
+        foreach (var location in locations)
+        {
+            var obj = await Addressables.LoadAssetAsync<Item>(location).Task;
+            _items.Add(obj);
+        }
+    }
+
 }
